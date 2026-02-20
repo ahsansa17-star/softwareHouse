@@ -1,0 +1,169 @@
+import { Check, Star, Zap } from 'lucide-react';
+
+export default function Pricing() {
+  const scrollToContact = () => {
+    const element = document.getElementById('contact');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const pricingPlans = [
+    {
+      name: 'Starter Store',
+      description: 'Perfect for launching your first online store',
+      price: 'Custom',
+      popular: false,
+      features: [
+        'Basic WooCommerce or Shopify setup',
+        'Up to 20 products',
+        'Mobile responsive design',
+        'Basic payment gateway (1 method)',
+        'Product catalog setup',
+        'Contact form integration',
+        '1 month support',
+        'SSL certificate setup'
+      ]
+    },
+    {
+      name: 'Business Store',
+      description: 'Complete package for growing businesses',
+      price: 'Custom',
+      popular: true,
+      features: [
+        'Professional e-commerce website',
+        'Unlimited products',
+        'Custom branding & logo design',
+        'Multiple payment gateways',
+        'SEO setup & optimization',
+        'Social media integration',
+        'Inventory management',
+        'Order tracking system',
+        'Email notifications',
+        'Analytics dashboard',
+        '3 months support',
+        'Free training session'
+      ]
+    },
+    {
+      name: 'Enterprise Store + AI',
+      description: 'Advanced automation for scaling businesses',
+      price: 'Custom',
+      popular: false,
+      features: [
+        'Everything in Business Store',
+        'AI chatbot for customer support',
+        'WhatsApp automation',
+        'Inventory automation',
+        'CRM integration',
+        'Custom workflow automation',
+        'Advanced analytics & reporting',
+        'Multi-channel selling (Daraz, etc)',
+        'ERP-lite system integration',
+        'API integrations',
+        '6 months priority support',
+        'Dedicated account manager'
+      ]
+    }
+  ];
+
+  return (
+    <section id="pricing" className="py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            E-commerce Pricing Packages
+          </h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Ready-to-launch online store solutions tailored to your business size
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
+          {pricingPlans.map((plan, index) => (
+            <div
+              key={index}
+              className={`relative rounded-2xl p-8 ${
+                plan.popular
+                  ? 'bg-gradient-to-br from-blue-600 to-blue-700 text-white shadow-2xl scale-105'
+                  : 'bg-white border-2 border-gray-100 hover:shadow-xl'
+              } transition-all duration-300`}
+            >
+              {plan.popular && (
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-orange-500 text-white px-4 py-1 rounded-full text-sm font-semibold flex items-center gap-1">
+                  <Star size={14} fill="white" />
+                  Most Popular
+                </div>
+              )}
+
+              <div className="mb-6">
+                <h3 className={`text-2xl font-bold mb-2 ${plan.popular ? 'text-white' : 'text-gray-900'}`}>
+                  {plan.name}
+                </h3>
+                <p className={`${plan.popular ? 'text-blue-100' : 'text-gray-600'}`}>
+                  {plan.description}
+                </p>
+              </div>
+
+              <div className="mb-6">
+                <div className={`text-4xl font-bold ${plan.popular ? 'text-white' : 'text-blue-600'}`}>
+                  {plan.price}
+                </div>
+                <p className={`text-sm ${plan.popular ? 'text-blue-100' : 'text-gray-600'}`}>
+                  Contact for quote
+                </p>
+              </div>
+
+              <ul className="space-y-3 mb-8">
+                {plan.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <Check
+                      size={20}
+                      className={`flex-shrink-0 mt-0.5 ${
+                        plan.popular ? 'text-blue-200' : 'text-green-600'
+                      }`}
+                    />
+                    <span className={`text-sm ${plan.popular ? 'text-white' : 'text-gray-700'}`}>
+                      {feature}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+
+              <button
+                onClick={scrollToContact}
+                className={`w-full py-3 rounded-lg font-semibold transition-all ${
+                  plan.popular
+                    ? 'bg-white text-blue-600 hover:bg-blue-50'
+                    : 'bg-blue-600 text-white hover:bg-blue-700'
+                }`}
+              >
+                Get Started
+              </button>
+            </div>
+          ))}
+        </div>
+
+        <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-8 md:p-12">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-3">
+                <Zap className="text-blue-600" size={28} />
+                <h3 className="text-2xl font-bold text-gray-900">Custom Solutions Available</h3>
+              </div>
+              <p className="text-gray-700 text-lg">
+                Need something specific? We create custom packages for unique requirements including AI solutions, enterprise software, and complex integrations.
+              </p>
+            </div>
+            <button
+              onClick={scrollToContact}
+              className="bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-colors font-semibold whitespace-nowrap"
+            >
+              Discuss Custom Project
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
