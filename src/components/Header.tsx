@@ -20,7 +20,7 @@ export default function Header() {
           <div className="flex-shrink-0">
             <button
               onClick={() => scrollToSection('home')}
-              className="text-2xl font-bold text-amber-400 hover:text-amber-500 transition-colors"
+              className="text-2xl font-bold text-gray-300 hover:text-gray-100 transition-colors"
             >
               LabSoftwareServices
             </button>
@@ -30,25 +30,25 @@ export default function Header() {
           <div className="hidden md:flex items-center space-x-8">
             <button
               onClick={() => scrollToSection('services')}
-              className="text-gray-300 hover:text-amber-400 transition-colors"
+              className="text-gray-300 hover:text-gray-100 transition-colors"
             >
               Services
             </button>
             <button
               onClick={() => scrollToSection('portfolio')}
-              className="text-gray-300 hover:text-amber-400 transition-colors"
+              className="text-gray-300 hover:text-gray-100 transition-colors"
             >
               Portfolio
             </button>
             <button
               onClick={() => scrollToSection('pricing')}
-              className="text-gray-300 hover:text-amber-400 transition-colors"
+              className="text-gray-300 hover:text-gray-100 transition-colors"
             >
               Pricing
             </button>
             <button
               onClick={() => scrollToSection('contact')}
-              className="bg-amber-400 text-black px-6 py-2 rounded-lg hover:bg-amber-500 transition-colors"
+              className="bg-gray-300 text-black px-6 py-2 rounded-lg hover:bg-gray-400 transition-colors"
             >
               Get Started
             </button>
@@ -58,7 +58,7 @@ export default function Header() {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-300 hover:text-amber-400"
+              className="text-gray-300 hover:text-gray-100"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -88,7 +88,7 @@ export default function Header() {
             </button>
             <button
               onClick={() => scrollToSection('contact')}
-              className="block w-full text-left px-4 py-2 bg-amber-400 text-black hover:bg-amber-500 rounded"
+              className="block w-full text-left px-4 py-2 bg-gray-300 text-black hover:bg-gray-400 rounded"
             >
               Get Started
             </button>

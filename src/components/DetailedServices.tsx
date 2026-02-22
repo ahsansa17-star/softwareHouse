@@ -1,4 +1,5 @@
-import { Globe, Palette, Bot, Check } from 'lucide-react';
+import { Globe, Palette, ShoppingCart, BookOpen, Check } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 export default function DetailedServices() {
   const detailedServices = [
@@ -14,7 +15,7 @@ export default function DetailedServices() {
       ],
       addOns: [
         'E-commerce platform setup (Shopify, WooCommerce)',
-        'Marketplace integration (Daraz, local platforms)',
+        'Marketplace integration (Amazon, eBay, Daraz)',
         'Payment gateway setup (JazzCash, EasyPaisa, PayPal)',
         'Website redesign and modernization',
         'Landing page design for campaigns',
@@ -23,7 +24,7 @@ export default function DetailedServices() {
         'Speed optimization',
         'Ongoing maintenance & security'
       ],
-      uiux: 'Intuitive e-commerce flow with clean product pages, easy navigation from products to checkout, and user-friendly dashboards for store management'
+      uiux: 'Clean, intuitive navigation from products to checkout, responsive design, and easy-to-manage dashboards for store owners'
     },
     {
       icon: Palette,
@@ -45,31 +46,44 @@ export default function DetailedServices() {
         'Email template design',
         'Presentation design'
       ],
-      uiux: 'Consistent store branding builds trust, while thoughtful product presentation and navigation drive conversions'
+      uiux: 'Consistent branding builds trust, with well-designed product presentation and intuitive navigation for better conversions'
     },
     {
-      icon: Bot,
-      title: 'Software & AI Solutions',
-      color: 'orange',
+      icon: ShoppingCart,
+      title: 'E-commerce Services',
+      color: 'purple',
       mainServices: [
-        'Custom software development',
-        'AI automation systems',
-        'AI agents for business operations',
-        'SaaS product development',
-        'Internal business tools'
+        'Full store setup on Shopify, WooCommerce, Amazon, or eBay',
+        'Product catalog creation with images, descriptions, and pricing',
+        'Smooth checkout and shopping cart functionality',
+        'Customer accounts and order tracking'
       ],
       addOns: [
-        'CRM setup for small businesses',
-        'Inventory & POS management',
-        'WhatsApp automation for stores',
-        'Customer support chatbots',
-        'Data dashboards & analytics',
-        'Workflow automation',
-        'ERP-lite systems',
-        'API integration',
-        'Business intelligence tools'
+        'Shipping & delivery setup with tracking',
+        'Payment gateway integration (PayPal, Stripe, local cards)',
+        'Marketing tools: coupons, discounts, email notifications',
+        'Analytics and reporting on sales, popular products, and customer behavior',
+        'Customer support setup: chat, WhatsApp, or email'
       ],
-      uiux: 'Simple dashboards and panels let store owners manage products, orders, and customers without confusion'
+      uiux: 'Easy-to-use e-commerce flow with clear product pages, checkout process, and management dashboard'
+    },
+    {
+      icon: BookOpen,
+      title: 'eBook Selling Services',
+      color: 'teal',
+      mainServices: [
+        'Upload and categorize eBooks for online sale',
+        'Set up payment gateways for purchases',
+        'Customer accounts and order tracking',
+        'Marketing and promotion tools'
+      ],
+      addOns: [
+        'Discount management and promotional campaigns',
+        'Basic SEO setup for visibility',
+        'Analytics to track sales and revenue trends',
+        'Integration with e-commerce platforms or marketplaces'
+      ],
+      uiux: 'Intuitive navigation for buyers, organized product pages, and easy-to-manage dashboard for authors and sellers'
     }
   ];
 
@@ -77,7 +91,8 @@ export default function DetailedServices() {
     const colors = {
       blue: { bg: 'bg-blue-900/20', text: 'text-blue-400', border: 'border-blue-700' },
       green: { bg: 'bg-green-900/20', text: 'text-green-400', border: 'border-green-700' },
-      orange: { bg: 'bg-orange-900/20', text: 'text-orange-400', border: 'border-orange-700' }
+      purple: { bg: 'bg-purple-900/20', text: 'text-purple-400', border: 'border-purple-700' },
+      teal: { bg: 'bg-teal-900/20', text: 'text-teal-400', border: 'border-teal-700' }
     };
     return colors[color as keyof typeof colors];
   };
@@ -85,18 +100,27 @@ export default function DetailedServices() {
   return (
     <section className="py-20 bg-black text-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-amber-400 mb-4">Complete Service Details</h2>
+        {/* Section Title */}
+        <div className="text-center mb-16 fade-in">
+          <h2 className="text-4xl md:text-5xl font-bold text-amber-400 mb-4 glow-amber">
+            Complete Service Details
+          </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Everything you need to launch and grow your digital presence
           </p>
         </div>
 
+        {/* Service Cards */}
         <div className="space-y-12">
           {detailedServices.map((service, idx) => {
             const colors = getColorClasses(service.color);
+
             return (
-              <div key={idx} className="bg-gray-900 rounded-2xl shadow-lg overflow-hidden">
+              <div
+                key={idx}
+                className="bg-gray-900 rounded-2xl shadow-lg overflow-hidden hover:scale-105 hover:shadow-glow transition-transform duration-300 fade-in"
+              >
+                {/* Header */}
                 <div className={`${colors.bg} border-b-2 ${colors.border} p-8`}>
                   <div className="flex items-center gap-4">
                     <div className={`w-14 h-14 rounded-xl bg-black ${colors.text} flex items-center justify-center`}>
@@ -106,33 +130,39 @@ export default function DetailedServices() {
                   </div>
                 </div>
 
-                <div className="p-8 space-y-6">
+                {/* Main Services */}
+                <div className="p-8 space-y-8">
                   <div>
-                    <h4 className="text-xl font-semibold mb-4">Main Services</h4>
-                    <ul className="grid md:grid-cols-2 gap-3">
+                    <h4 className="text-xl font-semibold text-gray-100 mb-4">Main Services</h4>
+                    <ul className="grid md:grid-cols-2 gap-4">
                       {service.mainServices.map((item, i) => (
-                        <li key={i} className="flex items-start gap-2">
-                          <Check size={20} className={`${colors.text} mt-1`} />
-                          <span>{item}</span>
+                        <li key={i} className="flex items-start gap-3">
+                          <Check size={20} className={`${colors.text} mt-1 flex-shrink-0`} />
+                          <span className="text-gray-300">{item}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
+                  {/* Add-ons */}
                   <div>
-                    <h4 className="text-xl font-semibold mb-4">Add-on Services</h4>
+                    <h4 className="text-xl font-semibold text-gray-100 mb-4">Add-on Services</h4>
                     <ul className="grid md:grid-cols-3 gap-3">
                       {service.addOns.map((item, i) => (
-                        <li key={i} className={`${colors.bg} rounded-lg p-3 text-sm text-gray-300`}>
+                        <li
+                          key={i}
+                          className={`${colors.bg} rounded-lg p-3 text-sm text-gray-300 hover:scale-105 hover:shadow-glow transition-all duration-300`}
+                        >
                           {item}
                         </li>
                       ))}
                     </ul>
                   </div>
 
+                  {/* UI/UX Focus */}
                   <div className={`${colors.bg} rounded-xl p-6 border-l-4 ${colors.border}`}>
                     <h4 className={`${colors.text} font-semibold mb-2`}>UI/UX Focus</h4>
-                    <p>{service.uiux}</p>
+                    <p className="text-gray-300">{service.uiux}</p>
                   </div>
                 </div>
               </div>

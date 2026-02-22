@@ -2,7 +2,108 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---------- Global Dark Theme ---------- */
 html, body {
   background-color: #000000;
   color: #f3f4f6;
+  font-family: 'Inter', sans-serif;
+  scroll-behavior: smooth;
+}
+
+/* ---------- Glowing Text ---------- */
+.glow-amber, .text-amber-glow {
+  color: #fbbf24;
+  text-shadow: 0 0 6px #fbbf24, 0 0 12px #f59e0b;
+}
+.hover-glow:hover {
+  text-shadow: 0 0 12px #fbbf24, 0 0 24px #f59e0b;
+  transition: text-shadow 0.3s ease;
+}
+
+/* ---------- Links ---------- */
+a {
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: #fbbf24;
+}
+
+/* ---------- Buttons ---------- */
+button, .btn {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+button:hover, .btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 15px rgba(255, 185, 0, 0.3);
+}
+
+/* ---------- Cards ---------- */
+.card, .card-bg {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #1a1a1a;
+  border: 1px solid #333333;
+  border-radius: 1rem;
+}
+.card:hover, .card-bg:hover {
+  transform: scale(1.03);
+  box-shadow: 0 15px 25px rgba(255, 185, 0, 0.3);
+}
+
+/* ---------- Fade-in Animations ---------- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-in {
+  animation: fadeInUp 1s ease forwards;
+}
+.fade-in-delay-1 { animation-delay: 0.2s; }
+.fade-in-delay-2 { animation-delay: 0.4s; }
+.fade-in-delay-3 { animation-delay: 0.6s; }
+.fade-in-delay-4 { animation-delay: 0.8s; }
+
+/* ---------- Section Styling ---------- */
+section {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+/* ---------- Headings ---------- */
+h1, h2, h3, h4, h5 {
+  color: #f3f4f6;
+  font-weight: 700;
+}
+
+/* ---------- Navbar ---------- */
+header {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+header.scrolled {
+  background-color: rgba(0, 0, 0, 0.95);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* ---------- Footer ---------- */
+footer a:hover {
+  color: #fbbf24;
+}
+
+/* ---------- Utilities ---------- */
+.bg-black-dark {
+  background-color: #000000;
+}
+.shadow-glow {
+  box-shadow: 0 8px 15px rgba(255, 185, 0, 0.3);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .fade-in { animation: fadeInUp 1s ease forwards; }
 }
