@@ -70,7 +70,7 @@ export default function Pricing() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-amber-400 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-amber-400 mb-4 glow-amber">
             E-commerce Pricing Packages
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
@@ -83,21 +83,21 @@ export default function Pricing() {
           {pricingPlans.map((plan, idx) => (
             <div
               key={idx}
-              className={`relative rounded-2xl p-8 transition-all duration-300 transform hover:-translate-y-2 ${
+              className={`relative rounded-2xl p-8 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-glow ${
                 plan.popular
                   ? 'bg-gradient-to-br from-blue-600 to-blue-700 text-white shadow-2xl scale-105'
-                  : 'bg-gray-900 border border-gray-700 hover:shadow-xl'
+                  : 'bg-gray-900 border border-gray-700'
               }`}
             >
               {plan.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-amber-500 text-black px-4 py-1 rounded-full text-sm font-semibold flex items-center gap-1">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-amber-500 text-black px-4 py-1 rounded-full text-sm font-semibold flex items-center gap-1 glow-amber-badge">
                   <Star size={14} fill="black" />
                   Most Popular
                 </div>
               )}
 
               <div className="mb-6">
-                <h3 className={`text-2xl font-bold mb-2 ${plan.popular ? 'text-white' : 'text-amber-400'}`}>
+                <h3 className={`text-2xl font-bold mb-2 ${plan.popular ? 'text-white' : 'text-amber-400 glow-amber'}`}>
                   {plan.name}
                 </h3>
                 <p className={`${plan.popular ? 'text-blue-100' : 'text-gray-400'}`}>
@@ -106,7 +106,7 @@ export default function Pricing() {
               </div>
 
               <div className="mb-6">
-                <div className={`text-4xl font-bold ${plan.popular ? 'text-white' : 'text-amber-400'}`}>
+                <div className={`text-4xl font-bold ${plan.popular ? 'text-white' : 'text-amber-400 glow-amber'}`}>
                   {plan.price}
                 </div>
                 <p className={`text-sm ${plan.popular ? 'text-blue-100' : 'text-gray-400'}`}>
@@ -120,7 +120,7 @@ export default function Pricing() {
                     <Check
                       size={20}
                       className={`flex-shrink-0 mt-0.5 ${
-                        plan.popular ? 'text-blue-200' : 'text-green-400'
+                        plan.popular ? 'text-blue-200' : 'text-amber-400 glow-amber'
                       }`}
                     />
                     <span className={`text-sm ${plan.popular ? 'text-white' : 'text-gray-300'}`}>
@@ -135,7 +135,7 @@ export default function Pricing() {
                 className={`w-full py-3 rounded-lg font-semibold transition-all ${
                   plan.popular
                     ? 'bg-white text-blue-600 hover:bg-blue-50'
-                    : 'bg-blue-600 text-white hover:bg-blue-700'
+                    : 'bg-amber-400 text-black hover:bg-amber-500 glow-amber-btn'
                 }`}
               >
                 Get Started
@@ -149,8 +149,8 @@ export default function Pricing() {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-3">
-                <Zap className="text-amber-400" size={28} />
-                <h3 className="text-2xl font-bold text-gray-100">Custom Solutions Available</h3>
+                <Zap className="text-amber-400 glow-amber" size={28} />
+                <h3 className="text-2xl font-bold text-gray-100 glow-amber">Custom Solutions Available</h3>
               </div>
               <p className="text-gray-400 text-lg">
                 Need something specific? We create custom packages for unique requirements including AI solutions, enterprise software, and complex integrations.
@@ -158,13 +158,29 @@ export default function Pricing() {
             </div>
             <button
               onClick={scrollToContact}
-              className="bg-amber-400 text-black px-8 py-4 rounded-lg hover:bg-amber-500 transition-colors font-semibold whitespace-nowrap"
+              className="bg-amber-400 text-black px-8 py-4 rounded-lg hover:bg-amber-500 transition-colors font-semibold whitespace-nowrap glow-amber-btn"
             >
               Discuss Custom Project
             </button>
           </div>
         </div>
       </div>
+
+      {/* Glowing Styles */}
+      <style>{`
+        .glow-amber {
+          text-shadow: 0 0 8px rgba(255,191,0,0.7), 0 0 16px rgba(255,191,0,0.4);
+        }
+        .glow-amber-badge {
+          box-shadow: 0 0 8px rgba(255,191,0,0.7), 0 0 16px rgba(255,191,0,0.4);
+        }
+        .glow-amber-btn:hover {
+          box-shadow: 0 0 12px rgba(255,191,0,0.6), 0 0 24px rgba(255,191,0,0.3);
+        }
+        .hover\\:shadow-glow:hover {
+          box-shadow: 0 0 12px rgba(255,191,0,0.5), 0 0 24px rgba(255,191,0,0.3);
+        }
+      `}</style>
     </section>
   );
 }
