@@ -62,134 +62,108 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-gradient-to-br from-blue-50 via-white to-gray-50">
+    <section id="contact" className="py-20 bg-black text-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-amber-400 mb-4">
             Ready to Start Your Project?
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             Let's discuss how we can help transform your digital presence
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
+          {/* Contact Info */}
           <div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Get in Touch</h3>
-            <p className="text-gray-600 mb-8">
+            <h3 className="text-2xl font-bold text-gray-100 mb-6">Get in Touch</h3>
+            <p className="text-gray-400 mb-8">
               Have a project in mind? We'd love to hear about it. Fill out the form and our team will get back to you within 24 hours.
             </p>
 
             <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="bg-blue-100 text-blue-600 p-3 rounded-lg">
-                  <Mail size={24} />
+              {[
+                { icon: Mail, title: 'Email Us', value: 'hello@nexusdev.com', bg: 'bg-blue-900', text: 'text-amber-400' },
+                { icon: Phone, title: 'Call Us', value: '+92 XXX XXXXXXX', bg: 'bg-green-900', text: 'text-amber-400' },
+                { icon: MessageSquare, title: 'WhatsApp', value: 'Available for quick queries', bg: 'bg-orange-900', text: 'text-amber-400' }
+              ].map((contact, idx) => (
+                <div key={idx} className="flex items-start gap-4">
+                  <div className={`${contact.bg} ${contact.text} p-3 rounded-lg`}>
+                    <contact.icon size={24} />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-100 mb-1">{contact.title}</h4>
+                    <p className="text-gray-400">{contact.value}</p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-semibold text-gray-900 mb-1">Email Us</h4>
-                  <p className="text-gray-600">hello@nexusdev.com</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="bg-green-100 text-green-600 p-3 rounded-lg">
-                  <Phone size={24} />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-gray-900 mb-1">Call Us</h4>
-                  <p className="text-gray-600">+92 XXX XXXXXXX</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="bg-orange-100 text-orange-600 p-3 rounded-lg">
-                  <MessageSquare size={24} />
-                </div>
-                <div>
-                  <h4 className="font-semibold text-gray-900 mb-1">WhatsApp</h4>
-                  <p className="text-gray-600">Available for quick queries</p>
-                </div>
-              </div>
+              ))}
             </div>
 
-            <div className="mt-10 bg-blue-600 rounded-2xl p-8 text-white">
-              <h4 className="text-xl font-bold mb-3">Why Choose Us?</h4>
+            <div className="mt-10 bg-gray-900 rounded-2xl p-8 text-gray-200">
+              <h4 className="text-xl font-bold mb-3 text-amber-400">Why Choose Us?</h4>
               <ul className="space-y-2">
-                <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
-                  Fast turnaround time
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
-                  Competitive pricing
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
-                  24/7 support available
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
-                  100% satisfaction guarantee
-                </li>
+                {['Fast turnaround time', 'Competitive pricing', '24/7 support available', '100% satisfaction guarantee'].map((item, idx) => (
+                  <li key={idx} className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1"></div>
+                    {item}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl shadow-xl p-8">
+          {/* Contact Form */}
+          <div className="bg-gray-900 rounded-2xl shadow-xl p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
               {error && (
-                <div className="bg-red-50 border-l-4 border-red-600 p-4 rounded">
-                  <p className="text-red-700 font-semibold">Error</p>
-                  <p className="text-red-600 text-sm">{error}</p>
+                <div className="bg-red-900 border-l-4 border-red-600 p-4 rounded">
+                  <p className="text-red-400 font-semibold">Error</p>
+                  <p className="text-red-300 text-sm">{error}</p>
                 </div>
               )}
 
               {success && (
-                <div className="bg-green-50 border-l-4 border-green-600 p-4 rounded">
-                  <p className="text-green-700 font-semibold">Success!</p>
-                  <p className="text-green-600 text-sm">Thank you for your inquiry. We'll contact you within 24 hours.</p>
+                <div className="bg-green-900 border-l-4 border-green-500 p-4 rounded">
+                  <p className="text-green-400 font-semibold">Success!</p>
+                  <p className="text-green-300 text-sm">Thank you for your inquiry. We'll contact you within 24 hours.</p>
                 </div>
               )}
 
-              <div>
-                <label htmlFor="name" className="block text-sm font-semibold text-gray-900 mb-2">
-                  Your Name *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  value={formData.name}
-                  onChange={handleChange}
-                  disabled={loading}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-colors disabled:bg-gray-100"
-                  placeholder="John Doe"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm font-semibold text-gray-900 mb-2">
-                  Email Address *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  value={formData.email}
-                  onChange={handleChange}
-                  disabled={loading}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-colors disabled:bg-gray-100"
-                  placeholder="john@example.com"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
+              {/* Form Inputs */}
+              <div className="grid gap-4 md:grid-cols-2">
                 <div>
-                  <label htmlFor="company" className="block text-sm font-semibold text-gray-900 mb-2">
-                    Company
-                  </label>
+                  <label htmlFor="name" className="block text-sm font-semibold text-gray-200 mb-2">Your Name *</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    value={formData.name}
+                    onChange={handleChange}
+                    disabled={loading}
+                    className="w-full px-4 py-3 border-2 border-gray-700 rounded-lg bg-black text-gray-200 focus:border-amber-400 focus:outline-none disabled:bg-gray-800"
+                    placeholder="John Doe"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-sm font-semibold text-gray-200 mb-2">Email Address *</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    value={formData.email}
+                    onChange={handleChange}
+                    disabled={loading}
+                    className="w-full px-4 py-3 border-2 border-gray-700 rounded-lg bg-black text-gray-200 focus:border-amber-400 focus:outline-none disabled:bg-gray-800"
+                    placeholder="john@example.com"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="company" className="block text-sm font-semibold text-gray-200 mb-2">Company</label>
                   <input
                     type="text"
                     id="company"
@@ -197,14 +171,13 @@ export default function Contact() {
                     value={formData.company}
                     onChange={handleChange}
                     disabled={loading}
-                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-colors disabled:bg-gray-100"
+                    className="w-full px-4 py-3 border-2 border-gray-700 rounded-lg bg-black text-gray-200 focus:border-amber-400 focus:outline-none disabled:bg-gray-800"
                     placeholder="Your Company"
                   />
                 </div>
+
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-semibold text-gray-900 mb-2">
-                    Phone
-                  </label>
+                  <label htmlFor="phone" className="block text-sm font-semibold text-gray-200 mb-2">Phone</label>
                   <input
                     type="tel"
                     id="phone"
@@ -212,16 +185,14 @@ export default function Contact() {
                     value={formData.phone}
                     onChange={handleChange}
                     disabled={loading}
-                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-colors disabled:bg-gray-100"
+                    className="w-full px-4 py-3 border-2 border-gray-700 rounded-lg bg-black text-gray-200 focus:border-amber-400 focus:outline-none disabled:bg-gray-800"
                     placeholder="+92 XXX XXXXXXX"
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="service" className="block text-sm font-semibold text-gray-900 mb-2">
-                  Service Interested In *
-                </label>
+                <label htmlFor="service" className="block text-sm font-semibold text-gray-200 mb-2">Service Interested In *</label>
                 <select
                   id="service"
                   name="service"
@@ -229,7 +200,7 @@ export default function Contact() {
                   value={formData.service}
                   onChange={handleChange}
                   disabled={loading}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-colors disabled:bg-gray-100"
+                  className="w-full px-4 py-3 border-2 border-gray-700 rounded-lg bg-black text-gray-200 focus:border-amber-400 focus:outline-none disabled:bg-gray-800"
                 >
                   <option value="">Select a service</option>
                   <option value="web">Web Development</option>
@@ -241,9 +212,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-semibold text-gray-900 mb-2">
-                  Project Details *
-                </label>
+                <label htmlFor="message" className="block text-sm font-semibold text-gray-200 mb-2">Project Details *</label>
                 <textarea
                   id="message"
                   name="message"
@@ -251,8 +220,8 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   disabled={loading}
-                  rows={4}
-                  className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-colors resize-none disabled:bg-gray-100"
+                  rows={5}
+                  className="w-full px-4 py-3 border-2 border-gray-700 rounded-lg bg-black text-gray-200 focus:border-amber-400 focus:outline-none resize-none disabled:bg-gray-800"
                   placeholder="Tell us about your project..."
                 />
               </div>
@@ -260,7 +229,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-blue-600 text-white py-4 rounded-lg hover:bg-blue-700 transition-colors font-semibold flex items-center justify-center gap-2 disabled:bg-gray-400 disabled:cursor-not-allowed"
+                className="w-full bg-amber-400 text-black py-4 rounded-lg hover:bg-amber-500 transition-colors font-semibold flex items-center justify-center gap-2 disabled:bg-gray-700 disabled:cursor-not-allowed"
               >
                 {loading ? 'Sending...' : 'Send Message'}
                 {!loading && <Send size={20} />}
