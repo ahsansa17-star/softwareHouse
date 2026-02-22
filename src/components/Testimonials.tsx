@@ -42,7 +42,7 @@ export default function Testimonials() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-amber-400 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-amber-400 mb-4 glow-amber">
             Client Testimonials
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
@@ -63,7 +63,7 @@ export default function Testimonials() {
             {testimonials.map((testimonial) => (
               <div
                 key={testimonial.id}
-                className="bg-gray-900 rounded-2xl p-8 border-l-4 border-amber-400 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2"
+                className="bg-gray-900 rounded-2xl p-8 border-l-4 border-amber-400 hover:shadow-glow transition-all duration-300 transform hover:-translate-y-2"
               >
                 {/* Rating */}
                 {testimonial.rating && (
@@ -72,7 +72,7 @@ export default function Testimonials() {
                       <Star
                         key={i}
                         size={18}
-                        className="fill-amber-400 text-amber-400"
+                        className="fill-amber-400 text-amber-400 glow-star"
                       />
                     ))}
                   </div>
@@ -90,7 +90,9 @@ export default function Testimonials() {
                     <p className="text-sm text-gray-400">{testimonial.role}</p>
                   )}
                   {testimonial.company_name && (
-                    <p className="text-sm text-amber-400 font-medium">{testimonial.company_name}</p>
+                    <p className="text-sm text-amber-400 font-medium glow-text">
+                      {testimonial.company_name}
+                    </p>
                   )}
                 </div>
               </div>
@@ -98,6 +100,22 @@ export default function Testimonials() {
           </div>
         )}
       </div>
+
+      {/* Glowing Styles */}
+      <style>{`
+        .glow-amber {
+          text-shadow: 0 0 8px rgba(255,191,0,0.7), 0 0 16px rgba(255,191,0,0.4);
+        }
+        .glow-star {
+          filter: drop-shadow(0 0 4px rgba(255,191,0,0.7)) drop-shadow(0 0 8px rgba(255,191,0,0.4));
+        }
+        .glow-text {
+          text-shadow: 0 0 6px rgba(255,191,0,0.5), 0 0 12px rgba(255,191,0,0.3);
+        }
+        .hover\\:shadow-glow:hover {
+          box-shadow: 0 0 12px rgba(255,191,0,0.5), 0 0 24px rgba(255,191,0,0.3);
+        }
+      `}</style>
     </section>
   );
 }
