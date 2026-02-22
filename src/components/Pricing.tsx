@@ -3,9 +3,7 @@ import { Check, Star, Zap } from 'lucide-react';
 export default function Pricing() {
   const scrollToContact = () => {
     const element = document.getElementById('contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (element) element.scrollIntoView({ behavior: 'smooth' });
   };
 
   const pricingPlans = [
@@ -68,62 +66,64 @@ export default function Pricing() {
   ];
 
   return (
-    <section id="pricing" className="py-20 bg-white">
+    <section id="pricing" className="py-20 bg-black text-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-amber-400 mb-4">
             E-commerce Pricing Packages
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             Ready-to-launch online store solutions tailored to your business size
           </p>
         </div>
 
+        {/* Pricing Cards */}
         <div className="grid md:grid-cols-3 gap-8 mb-16">
-          {pricingPlans.map((plan, index) => (
+          {pricingPlans.map((plan, idx) => (
             <div
-              key={index}
-              className={`relative rounded-2xl p-8 ${
+              key={idx}
+              className={`relative rounded-2xl p-8 transition-all duration-300 transform hover:-translate-y-2 ${
                 plan.popular
                   ? 'bg-gradient-to-br from-blue-600 to-blue-700 text-white shadow-2xl scale-105'
-                  : 'bg-white border-2 border-gray-100 hover:shadow-xl'
-              } transition-all duration-300`}
+                  : 'bg-gray-900 border border-gray-700 hover:shadow-xl'
+              }`}
             >
               {plan.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-orange-500 text-white px-4 py-1 rounded-full text-sm font-semibold flex items-center gap-1">
-                  <Star size={14} fill="white" />
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-amber-500 text-black px-4 py-1 rounded-full text-sm font-semibold flex items-center gap-1">
+                  <Star size={14} fill="black" />
                   Most Popular
                 </div>
               )}
 
               <div className="mb-6">
-                <h3 className={`text-2xl font-bold mb-2 ${plan.popular ? 'text-white' : 'text-gray-900'}`}>
+                <h3 className={`text-2xl font-bold mb-2 ${plan.popular ? 'text-white' : 'text-amber-400'}`}>
                   {plan.name}
                 </h3>
-                <p className={`${plan.popular ? 'text-blue-100' : 'text-gray-600'}`}>
+                <p className={`${plan.popular ? 'text-blue-100' : 'text-gray-400'}`}>
                   {plan.description}
                 </p>
               </div>
 
               <div className="mb-6">
-                <div className={`text-4xl font-bold ${plan.popular ? 'text-white' : 'text-blue-600'}`}>
+                <div className={`text-4xl font-bold ${plan.popular ? 'text-white' : 'text-amber-400'}`}>
                   {plan.price}
                 </div>
-                <p className={`text-sm ${plan.popular ? 'text-blue-100' : 'text-gray-600'}`}>
+                <p className={`text-sm ${plan.popular ? 'text-blue-100' : 'text-gray-400'}`}>
                   Contact for quote
                 </p>
               </div>
 
               <ul className="space-y-3 mb-8">
-                {plan.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-start gap-3">
+                {plan.features.map((feature, i) => (
+                  <li key={i} className="flex items-start gap-3">
                     <Check
                       size={20}
                       className={`flex-shrink-0 mt-0.5 ${
-                        plan.popular ? 'text-blue-200' : 'text-green-600'
+                        plan.popular ? 'text-blue-200' : 'text-green-400'
                       }`}
                     />
-                    <span className={`text-sm ${plan.popular ? 'text-white' : 'text-gray-700'}`}>
+                    <span className={`text-sm ${plan.popular ? 'text-white' : 'text-gray-300'}`}>
                       {feature}
                     </span>
                   </li>
@@ -144,20 +144,21 @@ export default function Pricing() {
           ))}
         </div>
 
-        <div className="bg-gradient-to-r from-gray-50 to-blue-50 rounded-2xl p-8 md:p-12">
+        {/* Custom Solution CTA */}
+        <div className="bg-gray-900 rounded-2xl p-8 md:p-12">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex-1">
               <div className="flex items-center gap-3 mb-3">
-                <Zap className="text-blue-600" size={28} />
-                <h3 className="text-2xl font-bold text-gray-900">Custom Solutions Available</h3>
+                <Zap className="text-amber-400" size={28} />
+                <h3 className="text-2xl font-bold text-gray-100">Custom Solutions Available</h3>
               </div>
-              <p className="text-gray-700 text-lg">
+              <p className="text-gray-400 text-lg">
                 Need something specific? We create custom packages for unique requirements including AI solutions, enterprise software, and complex integrations.
               </p>
             </div>
             <button
               onClick={scrollToContact}
-              className="bg-blue-600 text-white px-8 py-4 rounded-lg hover:bg-blue-700 transition-colors font-semibold whitespace-nowrap"
+              className="bg-amber-400 text-black px-8 py-4 rounded-lg hover:bg-amber-500 transition-colors font-semibold whitespace-nowrap"
             >
               Discuss Custom Project
             </button>
