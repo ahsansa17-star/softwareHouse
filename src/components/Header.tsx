@@ -1,95 +1,122 @@
-import { Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { ArrowRight, Sparkles } from 'lucide-react';
+import heroBg from '/mnt/data/A_digital_photograph_for_LabSoftwareServices_featu.png';
+import { useEffect, useState } from 'react';
 
-export default function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+export default function Hero() {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
-    }
+    if (element) element.scrollIntoView({ behavior: 'smooth' });
   };
 
+  // For animated code text overlay
+  const codeLines = [
+    'const user = getUser();',
+    'fetch("/api/data").then(res => res.json());',
+    'const result = AI.process(input);',
+    'console.log("Project delivered successfully");',
+    'renderPortfolio(projects);'
+  ];
+  const [currentLine, setCurrentLine] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentLine((prev) => (prev + 1) % codeLines.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <header className="fixed top-0 left-0 right-0 bg-black/95 backdrop-blur-sm shadow-md z-50">
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Branding */}
-          <div className="flex-shrink-0">
-            <button
-              onClick={() => scrollToSection('home')}
-              className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-teal-400 animate-glow hover:scale-105 transition-transform"
-            >
-              LabSoftwareServices
-            </button>
+    <header
+      id="home"
+      className="relative bg-black text-gray-300 py-32 text-center overflow-hidden"
+      style={{
+        backgroundImage: `url(${heroBg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
+      }}
+    >
+      {/* Dark overlay for readability */}
+      <div className="absolute inset-0 bg-black/70"></div>
+
+      {/* Animated code overlay */}
+      <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
+        <pre className="text-gray-400/30 text-lg md:text-xl lg:text-2xl font-mono animate-fade-in-out">
+          {codeLines[currentLine]}
+        </pre>
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-4xl mx-auto">
+          {/* Top badge */}
+          <div className="inline-flex items-center gap-2 bg-gray-800/50 text-gray-400 px-4 py-2 rounded-full mb-8 animate-bounce">
+            <Sparkles size={16} />
+            <span className="text-sm font-medium">Powered by AI & Modern Technology</span>
           </div>
 
-          {/* Desktop nav */}
-          <div className="hidden md:flex items-center space-x-8">
-            {['services', 'portfolio', 'pricing'].map((sec) => (
-              <button
-                key={sec}
-                onClick={() => scrollToSection(sec)}
-                className="text-gray-300 hover:bg-gradient-to-r hover:from-blue-600 hover:via-purple-500 hover:to-teal-500 hover:text-white px-4 py-2 rounded-lg transition-all duration-300 hover:shadow-glow"
-              >
-                {sec.charAt(0).toUpperCase() + sec.slice(1)}
-              </button>
-            ))}
+          {/* Main title with gradient glow */}
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-teal-400 animate-glow">
+            LabSoftwareServices
+          </h1>
+
+          {/* Subtitle */}
+          <p className="text-xl md:text-2xl text-gray-300 mb-10 leading-relaxed">
+            AI-powered digital solutions for businesses, e-commerce, and branding.
+          </p>
+
+          {/* Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <button
+              onClick={() => scrollToSection('services')}
+              className="group bg-gradient-to-r from-blue-600 to-teal-500 text-white px-8 py-4 rounded-lg hover:scale-105 hover:shadow-lg hover:shadow-blue-500/50 transition-all flex items-center gap-2 text-lg font-semibold"
+            >
+              View Services
+              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            </button>
 
             <button
               onClick={() => scrollToSection('contact')}
-              className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-2 rounded-lg hover:scale-105 hover:shadow-glow transition-all font-semibold"
+              className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-4 rounded-lg border border-gray-400 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/50 transition-all text-lg font-semibold"
             >
               Get Started
             </button>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-300 hover:text-gray-100"
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+          {/* Stats */}
+          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-gray-400">
+            {[
+              { value: '50+', label: 'Projects Delivered', color: 'text-blue-400' },
+              { value: '30+', label: 'Happy Clients', color: 'text-green-400' },
+              { value: '24/7', label: 'Support Available', color: 'text-purple-400' },
+              { value: '100%', label: 'Satisfaction Rate', color: 'text-teal-400' }
+            ].map((stat, idx) => (
+              <div key={idx} className="text-center">
+                <div className={`text-4xl font-bold mb-2 ${stat.color} animate-glow`}>
+                  {stat.value}
+                </div>
+                <div>{stat.label}</div>
+              </div>
+            ))}
           </div>
         </div>
+      </div>
 
-        {/* Mobile menu */}
-        {isMenuOpen && (
-          <div className="md:hidden pb-4 space-y-2 bg-black/95">
-            {['services', 'portfolio', 'pricing'].map((sec) => (
-              <button
-                key={sec}
-                onClick={() => scrollToSection(sec)}
-                className="block w-full text-left px-4 py-2 text-gray-300 hover:bg-gradient-to-r hover:from-blue-600 hover:via-purple-500 hover:to-teal-500 hover:text-white rounded transition-all duration-300"
-              >
-                {sec.charAt(0).toUpperCase() + sec.slice(1)}
-              </button>
-            ))}
-            <button
-              onClick={() => scrollToSection('contact')}
-              className="block w-full text-left px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded hover:scale-105 hover:shadow-glow transition-all font-semibold"
-            >
-              Get Started
-            </button>
-          </div>
-        )}
-      </nav>
-
-      {/* Glow animation */}
+      {/* Tailwind CSS animations */}
       <style>{`
         @keyframes glow {
-          0%, 100% { text-shadow: 0 0 8px rgba(255,255,255,0.2), 0 0 12px rgba(0,255,255,0.3); }
-          50% { text-shadow: 0 0 12px rgba(255,255,255,0.4), 0 0 16px rgba(0,255,255,0.5); }
+          0%, 100% { text-shadow: 0 0 10px rgba(255,255,255,0.2), 0 0 20px rgba(0, 255, 255,0.3); }
+          50% { text-shadow: 0 0 20px rgba(255,255,255,0.4), 0 0 30px rgba(0, 255, 255,0.6); }
         }
         .animate-glow {
           animation: glow 2s ease-in-out infinite alternate;
         }
-        .hover\\:shadow-glow:hover {
-          box-shadow: 0 0 12px rgba(0, 255, 255, 0.4), 0 0 24px rgba(0, 128, 255, 0.3);
+
+        @keyframes fadeInOut {
+          0%, 100% { opacity: 0; }
+          50% { opacity: 1; }
+        }
+        .animate-fade-in-out {
+          animation: fadeInOut 2s ease-in-out infinite;
         }
       `}</style>
     </header>
