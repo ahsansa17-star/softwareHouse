@@ -66,7 +66,7 @@ export default function Contact() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-amber-400 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-amber-400 mb-4 glow-amber">
             Ready to Start Your Project?
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
@@ -77,23 +77,23 @@ export default function Contact() {
         <div className="grid md:grid-cols-2 gap-12">
           {/* Contact Info */}
           <div>
-            <h3 className="text-2xl font-bold text-gray-100 mb-6">Get in Touch</h3>
+            <h3 className="text-2xl font-bold text-gray-100 mb-6 glow-amber">Get in Touch</h3>
             <p className="text-gray-400 mb-8">
               Have a project in mind? We'd love to hear about it. Fill out the form and our team will get back to you within 24 hours.
             </p>
 
             <div className="space-y-6">
               {[
-                { icon: Mail, title: 'Email Us', value: 'hello@nexusdev.com', bg: 'bg-blue-900', text: 'text-amber-400' },
-                { icon: Phone, title: 'Call Us', value: '+92 XXX XXXXXXX', bg: 'bg-green-900', text: 'text-amber-400' },
-                { icon: MessageSquare, title: 'WhatsApp', value: 'Available for quick queries', bg: 'bg-orange-900', text: 'text-amber-400' }
+                { icon: Mail, title: 'Email Us', value: 'hello@nexusdev.com', bg: 'bg-blue-900', text: 'text-amber-400 glow-amber' },
+                { icon: Phone, title: 'Call Us', value: '+92 XXX XXXXXXX', bg: 'bg-green-900', text: 'text-amber-400 glow-amber' },
+                { icon: MessageSquare, title: 'WhatsApp', value: 'Available for quick queries', bg: 'bg-orange-900', text: 'text-amber-400 glow-amber' }
               ].map((contact, idx) => (
                 <div key={idx} className="flex items-start gap-4">
                   <div className={`${contact.bg} ${contact.text} p-3 rounded-lg`}>
                     <contact.icon size={24} />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-100 mb-1">{contact.title}</h4>
+                    <h4 className="font-semibold text-gray-100 mb-1 glow-amber">{contact.title}</h4>
                     <p className="text-gray-400">{contact.value}</p>
                   </div>
                 </div>
@@ -101,11 +101,11 @@ export default function Contact() {
             </div>
 
             <div className="mt-10 bg-gray-900 rounded-2xl p-8 text-gray-200">
-              <h4 className="text-xl font-bold mb-3 text-amber-400">Why Choose Us?</h4>
+              <h4 className="text-xl font-bold mb-3 text-amber-400 glow-amber">Why Choose Us?</h4>
               <ul className="space-y-2">
                 {['Fast turnaround time', 'Competitive pricing', '24/7 support available', '100% satisfaction guarantee'].map((item, idx) => (
                   <li key={idx} className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1"></div>
+                    <div className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1 glow-amber"></div>
                     {item}
                   </li>
                 ))}
@@ -117,14 +117,14 @@ export default function Contact() {
           <div className="bg-gray-900 rounded-2xl shadow-xl p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
               {error && (
-                <div className="bg-red-900 border-l-4 border-red-600 p-4 rounded">
+                <div className="bg-red-900 border-l-4 border-red-600 p-4 rounded glow-amber">
                   <p className="text-red-400 font-semibold">Error</p>
                   <p className="text-red-300 text-sm">{error}</p>
                 </div>
               )}
 
               {success && (
-                <div className="bg-green-900 border-l-4 border-green-500 p-4 rounded">
+                <div className="bg-green-900 border-l-4 border-green-500 p-4 rounded glow-amber">
                   <p className="text-green-400 font-semibold">Success!</p>
                   <p className="text-green-300 text-sm">Thank you for your inquiry. We'll contact you within 24 hours.</p>
                 </div>
@@ -132,67 +132,30 @@ export default function Contact() {
 
               {/* Form Inputs */}
               <div className="grid gap-4 md:grid-cols-2">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-semibold text-gray-200 mb-2">Your Name *</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    value={formData.name}
-                    onChange={handleChange}
-                    disabled={loading}
-                    className="w-full px-4 py-3 border-2 border-gray-700 rounded-lg bg-black text-gray-200 focus:border-amber-400 focus:outline-none disabled:bg-gray-800"
-                    placeholder="John Doe"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="email" className="block text-sm font-semibold text-gray-200 mb-2">Email Address *</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                    disabled={loading}
-                    className="w-full px-4 py-3 border-2 border-gray-700 rounded-lg bg-black text-gray-200 focus:border-amber-400 focus:outline-none disabled:bg-gray-800"
-                    placeholder="john@example.com"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="company" className="block text-sm font-semibold text-gray-200 mb-2">Company</label>
-                  <input
-                    type="text"
-                    id="company"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    disabled={loading}
-                    className="w-full px-4 py-3 border-2 border-gray-700 rounded-lg bg-black text-gray-200 focus:border-amber-400 focus:outline-none disabled:bg-gray-800"
-                    placeholder="Your Company"
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-semibold text-gray-200 mb-2">Phone</label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    disabled={loading}
-                    className="w-full px-4 py-3 border-2 border-gray-700 rounded-lg bg-black text-gray-200 focus:border-amber-400 focus:outline-none disabled:bg-gray-800"
-                    placeholder="+92 XXX XXXXXXX"
-                  />
-                </div>
+                {['name', 'email', 'company', 'phone'].map((field) => (
+                  <div key={field}>
+                    <label htmlFor={field} className="block text-sm font-semibold text-gray-200 mb-2 glow-amber">
+                      {field.charAt(0).toUpperCase() + field.slice(1)}{field !== 'company' && ' *'}
+                    </label>
+                    <input
+                      type={field === 'email' ? 'email' : 'text'}
+                      id={field}
+                      name={field}
+                      required={field !== 'company'}
+                      value={formData[field as keyof typeof formData]}
+                      onChange={handleChange}
+                      disabled={loading}
+                      className="w-full px-4 py-3 border-2 border-gray-700 rounded-lg bg-black text-gray-200 focus:border-amber-400 glow-amber focus:outline-none disabled:bg-gray-800"
+                      placeholder={field === 'phone' ? '+92 XXX XXXXXXX' : `Your ${field}`}
+                    />
+                  </div>
+                ))}
               </div>
 
               <div>
-                <label htmlFor="service" className="block text-sm font-semibold text-gray-200 mb-2">Service Interested In *</label>
+                <label htmlFor="service" className="block text-sm font-semibold text-gray-200 mb-2 glow-amber">
+                  Service Interested In *
+                </label>
                 <select
                   id="service"
                   name="service"
@@ -200,7 +163,7 @@ export default function Contact() {
                   value={formData.service}
                   onChange={handleChange}
                   disabled={loading}
-                  className="w-full px-4 py-3 border-2 border-gray-700 rounded-lg bg-black text-gray-200 focus:border-amber-400 focus:outline-none disabled:bg-gray-800"
+                  className="w-full px-4 py-3 border-2 border-gray-700 rounded-lg bg-black text-gray-200 focus:border-amber-400 glow-amber focus:outline-none disabled:bg-gray-800"
                 >
                   <option value="">Select a service</option>
                   <option value="web">Web Development</option>
@@ -212,7 +175,9 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-semibold text-gray-200 mb-2">Project Details *</label>
+                <label htmlFor="message" className="block text-sm font-semibold text-gray-200 mb-2 glow-amber">
+                  Project Details *
+                </label>
                 <textarea
                   id="message"
                   name="message"
@@ -221,7 +186,7 @@ export default function Contact() {
                   onChange={handleChange}
                   disabled={loading}
                   rows={5}
-                  className="w-full px-4 py-3 border-2 border-gray-700 rounded-lg bg-black text-gray-200 focus:border-amber-400 focus:outline-none resize-none disabled:bg-gray-800"
+                  className="w-full px-4 py-3 border-2 border-gray-700 rounded-lg bg-black text-gray-200 focus:border-amber-400 glow-amber focus:outline-none resize-none disabled:bg-gray-800"
                   placeholder="Tell us about your project..."
                 />
               </div>
@@ -229,7 +194,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-amber-400 text-black py-4 rounded-lg hover:bg-amber-500 transition-colors font-semibold flex items-center justify-center gap-2 disabled:bg-gray-700 disabled:cursor-not-allowed"
+                className="w-full bg-amber-400 text-black py-4 rounded-lg hover:bg-amber-500 glow-amber-btn transition-colors font-semibold flex items-center justify-center gap-2 disabled:bg-gray-700 disabled:cursor-not-allowed"
               >
                 {loading ? 'Sending...' : 'Send Message'}
                 {!loading && <Send size={20} />}
@@ -238,6 +203,16 @@ export default function Contact() {
           </div>
         </div>
       </div>
+
+      {/* Glowing Styles */}
+      <style>{`
+        .glow-amber {
+          text-shadow: 0 0 8px rgba(255,191,0,0.7), 0 0 16px rgba(255,191,0,0.4);
+        }
+        .glow-amber-btn:hover {
+          box-shadow: 0 0 12px rgba(255,191,0,0.6), 0 0 24px rgba(255,191,0,0.3);
+        }
+      `}</style>
     </section>
   );
 }
