@@ -84,7 +84,7 @@ export default function Portfolio() {
             onClick={() => setFilter('all')}
             className={`px-6 py-2 rounded-full font-semibold transition-all ${
               filter === 'all'
-                ? 'bg-amber-400 text-black glow-amber hover:scale-105'
+                ? 'bg-amber-400 text-black font-bold scale-105 shadow-glow-amber'
                 : 'bg-gray-800 text-gray-300 border border-gray-700 hover:border-amber-400 hover:scale-105 transition-transform'
             }`}
           >
@@ -193,6 +193,9 @@ export default function Portfolio() {
         }
         .glow-amber { 
           text-shadow: 0 0 8px rgba(255,191,0,0.7), 0 0 16px rgba(255,191,0,0.4);
+        }
+        .shadow-glow-amber {
+          box-shadow: 0 0 12px rgba(255,191,0,0.5), 0 0 24px rgba(255,191,0,0.3);
         }
         .hover\\:shadow-glow:hover {
           box-shadow: 0 0 12px rgba(255,191,0,0.5), 0 0 24px rgba(255,191,0,0.3);
