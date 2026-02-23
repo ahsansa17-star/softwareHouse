@@ -1,147 +1,178 @@
-import { ArrowRight, Sparkles } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
+import { supabase } from '../lib/supabase';
+import { ExternalLink, Loader } from 'lucide-react';
 
-export default function Hero() {
-  const [show, setShow] = useState(false);
+interface Project {
+  id: string;
+  title: string;
+  slug: string;
+  description: string;
+  category: 'web_development' | 'ecommerce' | 'branding' | 'software';
+  client_name: string;
+  results: string | null;
+  technologies: string[];
+}
+
+export default function Portfolio() {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState<'all' | Project['category']>('all');
 
   useEffect(() => {
-    const timer = setTimeout(() => setShow(true), 200);
-    return () => clearTimeout(timer);
+    const fetchProjects = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('projects')
+          .select('id, title, slug, description, category, client_name, results, technologies')
+          .eq('featured', true)
+          .order('completed_at', { ascending: false })
+          .limit(6);
+
+        if (error) throw error;
+        setProjects(data || []);
+      } catch (err) {
+        console.error('Failed to fetch projects:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProjects();
   }, []);
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) element.scrollIntoView({ behavior: 'smooth' });
+  const filteredProjects = filter === 'all'
+    ? projects
+    : projects.filter(p => p.category === filter);
+
+  const categoryLabels: Record<Project['category'], string> = {
+    web_development: 'Web Development',
+    ecommerce: 'E-commerce',
+    branding: 'Branding',
+    software: 'Software'
+  };
+
+  const categoryColors: Record<Project['category'], string> = {
+    web_development: 'bg-blue-900/20 text-blue-400 border-blue-700',
+    ecommerce: 'bg-green-900/20 text-green-400 border-green-700',
+    branding: 'bg-purple-900/20 text-purple-400 border-purple-700',
+    software: 'bg-teal-900/20 text-teal-400 border-teal-700'
   };
 
   return (
-    <section
-      id="home"
-      className="relative pt-32 pb-20 bg-black text-gray-300 overflow-hidden"
-    >
-
-      {/* 🔥 Floating Particles Background */}
-      <div className="absolute inset-0 -z-10">
-        {Array.from({ length: 40 }).map((_, i) => (
-          <span
-            key={i}
-            className="particle"
-            style={{
-              left: `${Math.random() * 100}%`,
-              animationDuration: `${6 + Math.random() * 6}s`,
-              animationDelay: `${Math.random() * 5}s`
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Soft Gradient Glow */}
-      <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-transparent to-amber-300/5 blur-3xl"></div>
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-4xl">
-
-        {/* Badge */}
-        <div
-          className={`inline-flex items-center gap-2 bg-gray-800/60 text-amber-400 px-4 py-2 rounded-full mb-8 transition-all duration-1000
-          ${show ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-6'}
-        `}
-        >
-          <Sparkles size={16} />
-          <span className="text-sm font-medium">
-            Powered by AI & Modern Technology
-          </span>
+    <section id="portfolio" className="py-20 bg-black text-gray-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-amber-400 mb-4 glow-amber">
+            Featured Portfolio
+          </h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            Showcasing our latest successful projects across all service categories
+          </p>
         </div>
 
-        {/* Company Name */}
-        <h1
-          className={`text-5xl md:text-6xl lg:text-7xl font-bold mb-6 transition-all duration-1000 delay-200
-          ${show ? 'opacity-100 scale-100 glow-amber' : 'opacity-0 scale-90'}
-        `}
-        >
-          LabSoftwareServices
-        </h1>
-
-        {/* Subtitle */}
-        <p
-          className={`text-xl md:text-2xl text-gray-400 mb-10 leading-relaxed transition-all duration-1000 delay-300
-          ${show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
-        `}
-        >
-          AI-powered digital solutions for businesses, e-commerce, and branding.
-        </p>
-
-        {/* Buttons */}
-        <div
-          className={`flex flex-col sm:flex-row gap-4 justify-center items-center transition-all duration-1000 delay-500
-          ${show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
-        `}
-        >
+        {/* Category Filters */}
+        <div className="flex flex-wrap gap-3 justify-center mb-12">
           <button
-            onClick={() => scrollToSection('contact')}
-            className="group bg-amber-400 text-black px-8 py-4 rounded-lg hover:scale-105 hover:shadow-lg hover:shadow-amber-400/50 transition-all flex items-center gap-2 text-lg font-semibold"
+            onClick={() => setFilter('all')}
+            className={`px-6 py-2 rounded-full font-semibold transition-all ${
+              filter === 'all'
+                ? 'bg-amber-400 text-black glow-amber hover:scale-105'
+                : 'bg-gray-800 text-gray-300 border border-gray-700 hover:border-amber-400 hover:scale-105 transition-transform'
+            }`}
           >
-            Start Your Project
-            <ArrowRight
-              size={20}
-              className="group-hover:translate-x-1 transition-transform"
-            />
+            All Projects
           </button>
 
-          <button
-            onClick={() => scrollToSection('services')}
-            className="border border-amber-400 text-amber-400 px-8 py-4 rounded-lg hover:bg-amber-400 hover:text-black transition-all text-lg font-semibold"
-          >
-            View Services
-          </button>
+          {Object.keys(categoryLabels).map(cat => (
+            <button
+              key={cat}
+              onClick={() => setFilter(cat as Project['category'])}
+              className={`px-6 py-2 rounded-full font-semibold transition-all ${
+                filter === cat
+                  ? 'glow-' + cat + ' text-white scale-105'
+                  : 'bg-gray-800 text-gray-300 border border-gray-700 hover:scale-105 transition-transform hover:border-amber-400'
+              }`}
+            >
+              {categoryLabels[cat as Project['category']]}
+            </button>
+          ))}
         </div>
+
+        {/* Projects Grid */}
+        {loading ? (
+          <div className="flex justify-center items-center py-20">
+            <Loader className="animate-spin text-amber-400" size={40} />
+          </div>
+        ) : filteredProjects.length === 0 ? (
+          <div className="text-center py-20">
+            <p className="text-gray-400 text-lg">No projects found in this category.</p>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredProjects.map(project => (
+              <div
+                key={project.id}
+                className={`bg-gray-900 rounded-2xl shadow-lg overflow-hidden hover:-translate-y-2 hover:shadow-glow transition-all duration-300 group`}
+              >
+                {/* Project Header */}
+                <div
+                  className={`h-48 flex items-center justify-center text-white text-2xl font-bold bg-gradient-to-br from-blue-700 via-purple-700 to-teal-700 glow-card`}
+                >
+                  {project.title.slice(0, 1)}
+                </div>
+
+                {/* Project Content */}
+                <div className="p-6">
+                  <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2 border ${categoryColors[project.category]}`}>
+                    {categoryLabels[project.category]}
+                  </span>
+
+                  <h3 className="text-xl font-bold text-gray-100 mb-2">{project.title}</h3>
+
+                  <p className="text-gray-400 text-sm mb-4">{project.description}</p>
+
+                  {project.results && (
+                    <div className="bg-amber-100 rounded-lg p-3 mb-4">
+                      <p className="text-sm text-amber-700 font-semibold">
+                        Result: {project.results}
+                      </p>
+                    </div>
+                  )}
+
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.slice(0, 3).map((tech, idx) => (
+                      <span key={idx} className="text-xs bg-gray-800 text-gray-200 px-2 py-1 rounded">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-gray-400">Client: {project.client_name}</span>
+                    <ExternalLink size={18} className="text-amber-400 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
-      {/* ✨ Animations */}
+      {/* Glow Animations */}
       <style>{`
-        .glow-amber {
-          text-shadow:
-            0 0 8px rgba(255,191,0,0.8),
-            0 0 16px rgba(255,191,0,0.5),
-            0 0 24px rgba(255,191,0,0.3);
-          animation: pulseGlow 2.5s ease-in-out infinite alternate;
+        .glow-card {
+          box-shadow: 0 0 12px rgba(0, 255, 255, 0.3), 0 0 24px rgba(0,128,255,0.2);
+          transition: box-shadow 0.3s ease-in-out;
         }
-
-        @keyframes pulseGlow {
-          from {
-            text-shadow:
-              0 0 6px rgba(255,191,0,0.6),
-              0 0 12px rgba(255,191,0,0.3);
-          }
-          to {
-            text-shadow:
-              0 0 14px rgba(255,191,0,1),
-              0 0 28px rgba(255,191,0,0.6);
-          }
+        .glow-card:hover {
+          box-shadow: 0 0 16px rgba(0, 255, 255, 0.5), 0 0 32px rgba(0,128,255,0.4);
         }
-
-        .particle {
-          position: absolute;
-          bottom: -10px;
-          width: 4px;
-          height: 4px;
-          background: rgba(255,191,0,0.7);
-          border-radius: 50%;
-          animation: floatUp linear infinite;
-        }
-
-        @keyframes floatUp {
-          from {
-            transform: translateY(0);
-            opacity: 0;
-          }
-          20% {
-            opacity: 1;
-          }
-          to {
-            transform: translateY(-120vh);
-            opacity: 0;
-          }
-        }
+        .glow-blue { box-shadow: 0 0 12px rgba(59,130,246,0.5); }
+        .glow-green { box-shadow: 0 0 12px rgba(16,185,129,0.5); }
+        .glow-purple { box-shadow: 0 0 12px rgba(139,92,246,0.5); }
+        .glow-software { box-shadow: 0 0 12px rgba(20,184,166,0.5); }
+        .glow-amber { text-shadow: 0 0 8px rgba(255,191,0,0.7), 0 0 16px rgba(255,191,0,0.4); }
       `}</style>
     </section>
   );
