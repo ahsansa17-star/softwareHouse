@@ -20,7 +20,7 @@ export default function Hero() {
       className="relative pt-32 pb-20 bg-black text-gray-300 overflow-hidden"
     >
 
-      {/* 🔥 Floating Particles Background */}
+      {/* Floating Particles */}
       <div className="absolute inset-0 -z-10">
         {Array.from({ length: 40 }).map((_, i) => (
           <span
@@ -40,15 +40,15 @@ export default function Hero() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center max-w-4xl">
 
-        {/* Badge */}
+        {/* Animated Badge */}
         <div
           className={`inline-flex items-center gap-2 bg-gray-800/60 text-amber-400 px-4 py-2 rounded-full mb-8 transition-all duration-1000
-          ${show ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-6'}
+          ${show ? 'opacity-100 translate-y-0 glow-badge' : 'opacity-0 -translate-y-6'}
         `}
         >
-          <Sparkles size={16} />
-          <span className="text-sm font-medium">
-            Powered by AI & Modern Technology
+          <Sparkles size={16} className="animate-pulse" />
+          <span className="text-sm font-medium tracking-wide">
+            Intelligent Innovation • AI-Driven Development
           </span>
         </div>
 
@@ -61,13 +61,16 @@ export default function Hero() {
           LabSoftwareServices
         </h1>
 
-        {/* Subtitle */}
+        {/* Story-Based Subtitle */}
         <p
-          className={`text-xl md:text-2xl text-gray-400 mb-10 leading-relaxed transition-all duration-1000 delay-300
+          className={`text-xl md:text-2xl text-gray-400 mb-10 leading-relaxed max-w-3xl mx-auto transition-all duration-1000 delay-300
           ${show ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}
         `}
         >
-          AI-powered digital solutions for businesses, e-commerce, and branding.
+          At LabSoftwareServices, we transform ambitious ideas into powerful digital
+          experiences. By combining advanced AI systems, strategic design, and modern
+          engineering, we help businesses scale faster, operate smarter, and compete
+          confidently in the digital era.
         </p>
 
         {/* Buttons */}
@@ -94,9 +97,10 @@ export default function Hero() {
             View Services
           </button>
         </div>
+
       </div>
 
-      {/* ✨ Animations */}
+      {/* Animations */}
       <style>{`
         .glow-amber {
           text-shadow:
@@ -116,6 +120,26 @@ export default function Hero() {
             text-shadow:
               0 0 14px rgba(255,191,0,1),
               0 0 28px rgba(255,191,0,0.6);
+          }
+        }
+
+        .glow-badge {
+          box-shadow:
+            0 0 8px rgba(255,191,0,0.4),
+            0 0 16px rgba(255,191,0,0.2);
+          animation: badgePulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes badgePulse {
+          from {
+            box-shadow:
+              0 0 6px rgba(255,191,0,0.3),
+              0 0 12px rgba(255,191,0,0.2);
+          }
+          to {
+            box-shadow:
+              0 0 14px rgba(255,191,0,0.6),
+              0 0 28px rgba(255,191,0,0.3);
           }
         }
 
