@@ -71,7 +71,7 @@ export default function Pricing() {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-amber-400 mb-4 glow-amber">
-            E-commerce Pricing Packages
+            Pricing Packages
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
             Ready-to-launch online store solutions tailored to your business size
