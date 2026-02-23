@@ -1,8 +1,14 @@
 import { Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showLogo, setShowLogo] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowLogo(true), 300);
+    return () => clearTimeout(timer);
+  }, []);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -21,15 +27,16 @@ export default function Header() {
           <div className="flex-shrink-0">
             <button
               onClick={() => scrollToSection('home')}
-              className="text-2xl font-bold text-amber-400 glow-amber hover:scale-105 transition-all"
+              className={`text-2xl font-bold text-amber-400 transition-all duration-1000 
+                ${showLogo ? 'opacity-100 translate-y-0 glow-amber' : 'opacity-0 -translate-y-3'}
+              `}
             >
-              NexusDev
+              LabSoftwareServices
             </button>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-
             {['services','portfolio','pricing'].map((item) => (
               <button
                 key={item}
@@ -41,16 +48,15 @@ export default function Header() {
               </button>
             ))}
 
-            {/* CTA Button */}
             <button
               onClick={() => scrollToSection('contact')}
-              className="bg-amber-400 text-black px-6 py-2 rounded-lg font-semibold hover:shadow-lg hover:shadow-amber-400/50 hover:scale-105 transition-all glow-amber-btn"
+              className="bg-amber-400 text-black px-6 py-2 rounded-lg font-semibold hover:shadow-lg hover:shadow-amber-400/50 hover:scale-105 transition-all"
             >
               Get Started
             </button>
           </div>
 
-          {/* Mobile Icon */}
+          {/* Mobile Toggle */}
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -64,7 +70,6 @@ export default function Header() {
         {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="md:hidden pb-4 space-y-3 bg-black/95 rounded-lg mt-2 p-4">
-
             {['services','portfolio','pricing'].map((item) => (
               <button
                 key={item}
@@ -77,7 +82,7 @@ export default function Header() {
 
             <button
               onClick={() => scrollToSection('contact')}
-              className="block w-full text-left px-4 py-2 bg-amber-400 text-black rounded font-semibold hover:shadow-lg hover:shadow-amber-400/50 transition-all"
+              className="block w-full text-left px-4 py-2 bg-amber-400 text-black rounded font-semibold"
             >
               Get Started
             </button>
@@ -85,16 +90,13 @@ export default function Header() {
         )}
       </nav>
 
-      {/* Glow Styles */}
+      {/* Glow Style */}
       <style>{`
         .glow-amber {
-          text-shadow: 0 0 8px rgba(255,191,0,0.8),
-                       0 0 16px rgba(255,191,0,0.4);
-        }
-
-        .glow-amber-btn:hover {
-          box-shadow: 0 0 12px rgba(255,191,0,0.6),
-                      0 0 24px rgba(255,191,0,0.3);
+          text-shadow:
+            0 0 8px rgba(255,191,0,0.8),
+            0 0 16px rgba(255,191,0,0.4),
+            0 0 24px rgba(255,191,0,0.2);
         }
       `}</style>
     </header>
