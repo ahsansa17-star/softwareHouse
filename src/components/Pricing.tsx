@@ -85,31 +85,31 @@ export default function Pricing() {
               key={idx}
               className={`relative rounded-2xl p-8 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-glow ${
                 plan.popular
-                  ? 'bg-gradient-to-br from-amber-500 to-amber-600 text-white shadow-2xl scale-105'
+                  ? 'bg-gradient-to-br from-amber-700/90 to-amber-800/90 text-white shadow-xl scale-105 border border-amber-600/30'
                   : 'bg-gray-900 border border-gray-700'
               }`}
             >
               {plan.popular && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-amber-500 text-black px-4 py-1 rounded-full text-sm font-semibold flex items-center gap-1 glow-amber-badge">
-                  <Star size={14} fill="black" />
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-amber-700/90 text-amber-100 px-4 py-1 rounded-full text-sm font-semibold flex items-center gap-1 border border-amber-600/50">
+                  <Star size={14} fill="currentColor" className="text-amber-300" />
                   Most Popular
                 </div>
               )}
 
               <div className="mb-6">
-                <h3 className={`text-2xl font-bold mb-2 ${plan.popular ? 'text-white' : 'text-amber-400 glow-amber'}`}>
+                <h3 className={`text-2xl font-bold mb-2 ${plan.popular ? 'text-amber-100' : 'text-amber-400 glow-amber'}`}>
                   {plan.name}
                 </h3>
-                <p className={`${plan.popular ? 'text-amber-50' : 'text-gray-400'}`}>
+                <p className={`${plan.popular ? 'text-amber-200/80' : 'text-gray-400'}`}>
                   {plan.description}
                 </p>
               </div>
 
               <div className="mb-6">
-                <div className={`text-4xl font-bold ${plan.popular ? 'text-white' : 'text-amber-400 glow-amber'}`}>
+                <div className={`text-4xl font-bold ${plan.popular ? 'text-amber-100' : 'text-amber-400 glow-amber'}`}>
                   {plan.price}
                 </div>
-                <p className={`text-sm ${plan.popular ? 'text-amber-50' : 'text-gray-400'}`}>
+                <p className={`text-sm ${plan.popular ? 'text-amber-200/70' : 'text-gray-400'}`}>
                   Contact for quote
                 </p>
               </div>
@@ -120,10 +120,10 @@ export default function Pricing() {
                     <Check
                       size={20}
                       className={`flex-shrink-0 mt-0.5 ${
-                        plan.popular ? 'text-amber-200' : 'text-amber-400 glow-amber'
+                        plan.popular ? 'text-amber-300/90' : 'text-amber-400 glow-amber'
                       }`}
                     />
-                    <span className={`text-sm ${plan.popular ? 'text-white' : 'text-gray-300'}`}>
+                    <span className={`text-sm ${plan.popular ? 'text-amber-50/90' : 'text-gray-300'}`}>
                       {feature}
                     </span>
                   </li>
