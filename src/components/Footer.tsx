@@ -19,16 +19,32 @@ export default function Footer() {
               Building websites, software & brands powered by AI
             </p>
             <div className="flex gap-4 text-gray-400">
-              <a href="#" className="hover:text-amber-400 transition-colors">
+              <a 
+                href="#" 
+                onClick={(e) => e.preventDefault()} 
+                className="hover:text-amber-400 transition-colors cursor-default"
+              >
                 <Facebook size={20} />
               </a>
-              <a href="#" className="hover:text-amber-400 transition-colors">
+              <a 
+                href="#" 
+                onClick={(e) => e.preventDefault()} 
+                className="hover:text-amber-400 transition-colors cursor-default"
+              >
                 <Twitter size={20} />
               </a>
-              <a href="#" className="hover:text-amber-400 transition-colors">
+              <a 
+                href="#" 
+                onClick={(e) => e.preventDefault()} 
+                className="hover:text-amber-400 transition-colors cursor-default"
+              >
                 <Linkedin size={20} />
               </a>
-              <a href="#" className="hover:text-amber-400 transition-colors">
+              <a 
+                href="#" 
+                onClick={(e) => e.preventDefault()} 
+                className="hover:text-amber-400 transition-colors cursor-default"
+              >
                 <Instagram size={20} />
               </a>
             </div>
@@ -74,7 +90,7 @@ export default function Footer() {
             <ul className="space-y-2 text-gray-300">
               <li className="flex items-center gap-2">
                 <Mail size={16} className="text-amber-400" />
-                <span>hello@labsoftwareservices.com</span>
+                <span>aiagentslabservices@gmail.com</span>
               </li>
               <li>+92 XXX XXXXXXX</li>
               <li>Available 24/7</li>
@@ -92,6 +108,13 @@ export default function Footer() {
           </div>
         </div>
       </div>
+
+      {/* Glow Styles */}
+      <style>{`
+        .glow-amber {
+          text-shadow: 0 0 8px rgba(255,191,0,0.7), 0 0 16px rgba(255,191,0,0.4);
+        }
+      `}</style>
     </footer>
   );
 }
