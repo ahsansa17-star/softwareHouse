@@ -58,6 +58,13 @@ export default function Portfolio() {
     software: 'bg-teal-900/20 text-teal-400 border-teal-700'
   };
 
+  const categoryGlowColors: Record<Project['category'], string> = {
+    web_development: 'glow-blue',
+    ecommerce: 'glow-green',
+    branding: 'glow-purple',
+    software: 'glow-software'
+  };
+
   return (
     <section id="portfolio" className="py-20 bg-black text-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -90,7 +97,7 @@ export default function Portfolio() {
               onClick={() => setFilter(cat as Project['category'])}
               className={`px-6 py-2 rounded-full font-semibold transition-all ${
                 filter === cat
-                  ? 'glow-' + cat + ' text-white scale-105'
+                  ? `${categoryGlowColors[cat as Project['category']]} text-white bg-gray-800 scale-105`
                   : 'bg-gray-800 text-gray-300 border border-gray-700 hover:scale-105 transition-transform hover:border-amber-400'
               }`}
             >
@@ -168,11 +175,28 @@ export default function Portfolio() {
         .glow-card:hover {
           box-shadow: 0 0 16px rgba(0, 255, 255, 0.5), 0 0 32px rgba(0,128,255,0.4);
         }
-        .glow-blue { box-shadow: 0 0 12px rgba(59,130,246,0.5); }
-        .glow-green { box-shadow: 0 0 12px rgba(16,185,129,0.5); }
-        .glow-purple { box-shadow: 0 0 12px rgba(139,92,246,0.5); }
-        .glow-software { box-shadow: 0 0 12px rgba(20,184,166,0.5); }
-        .glow-amber { text-shadow: 0 0 8px rgba(255,191,0,0.7), 0 0 16px rgba(255,191,0,0.4); }
+        .glow-blue { 
+          box-shadow: 0 0 12px rgba(59,130,246,0.5);
+          background-color: rgb(31, 41, 55);
+        }
+        .glow-green { 
+          box-shadow: 0 0 12px rgba(16,185,129,0.5);
+          background-color: rgb(31, 41, 55);
+        }
+        .glow-purple { 
+          box-shadow: 0 0 12px rgba(139,92,246,0.5);
+          background-color: rgb(31, 41, 55);
+        }
+        .glow-software { 
+          box-shadow: 0 0 12px rgba(20,184,166,0.5);
+          background-color: rgb(31, 41, 55);
+        }
+        .glow-amber { 
+          text-shadow: 0 0 8px rgba(255,191,0,0.7), 0 0 16px rgba(255,191,0,0.4);
+        }
+        .hover\\:shadow-glow:hover {
+          box-shadow: 0 0 12px rgba(255,191,0,0.5), 0 0 24px rgba(255,191,0,0.3);
+        }
       `}</style>
     </section>
   );
