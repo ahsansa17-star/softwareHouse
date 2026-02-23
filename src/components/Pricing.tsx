@@ -85,7 +85,7 @@ export default function Pricing() {
               key={idx}
               className={`relative rounded-2xl p-8 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-glow ${
                 plan.popular
-                  ? 'bg-gradient-to-br from-blue-600 to-blue-700 text-white shadow-2xl scale-105'
+                  ? 'bg-gradient-to-br from-amber-500 to-amber-600 text-white shadow-2xl scale-105'
                   : 'bg-gray-900 border border-gray-700'
               }`}
             >
@@ -100,7 +100,7 @@ export default function Pricing() {
                 <h3 className={`text-2xl font-bold mb-2 ${plan.popular ? 'text-white' : 'text-amber-400 glow-amber'}`}>
                   {plan.name}
                 </h3>
-                <p className={`${plan.popular ? 'text-blue-100' : 'text-gray-400'}`}>
+                <p className={`${plan.popular ? 'text-amber-50' : 'text-gray-400'}`}>
                   {plan.description}
                 </p>
               </div>
@@ -109,7 +109,7 @@ export default function Pricing() {
                 <div className={`text-4xl font-bold ${plan.popular ? 'text-white' : 'text-amber-400 glow-amber'}`}>
                   {plan.price}
                 </div>
-                <p className={`text-sm ${plan.popular ? 'text-blue-100' : 'text-gray-400'}`}>
+                <p className={`text-sm ${plan.popular ? 'text-amber-50' : 'text-gray-400'}`}>
                   Contact for quote
                 </p>
               </div>
@@ -120,7 +120,7 @@ export default function Pricing() {
                     <Check
                       size={20}
                       className={`flex-shrink-0 mt-0.5 ${
-                        plan.popular ? 'text-blue-200' : 'text-amber-400 glow-amber'
+                        plan.popular ? 'text-amber-200' : 'text-amber-400 glow-amber'
                       }`}
                     />
                     <span className={`text-sm ${plan.popular ? 'text-white' : 'text-gray-300'}`}>
@@ -134,7 +134,7 @@ export default function Pricing() {
                 onClick={scrollToContact}
                 className={`w-full py-3 rounded-lg font-semibold transition-all ${
                   plan.popular
-                    ? 'bg-white text-blue-600 hover:bg-blue-50'
+                    ? 'bg-blue-600 text-white hover:bg-blue-700'
                     : 'bg-amber-400 text-black hover:bg-amber-500 glow-amber-btn'
                 }`}
               >
