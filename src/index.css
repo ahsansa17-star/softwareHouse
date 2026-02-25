@@ -75,6 +75,42 @@ section {
   padding-bottom: 6rem;
 }
 
+/* =====================================================
+   PREMIUM OVERLAPPING SCROLL SECTIONS (NEW)
+===================================================== */
+
+.section-overlap {
+  position: relative;
+  min-height: 100vh;
+  padding: 8rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Overlap effect */
+.section-overlap:not(:first-child) {
+  margin-top: -120px; /* Adjust this to control overlap strength */
+}
+
+/* Inner content box */
+.section-content {
+  width: 100%;
+  max-width: 1200px;
+  background: #1a1a1a;
+  border-radius: 2rem;
+  padding: 4rem;
+  border: 1px solid #333333;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Subtle depth hover */
+.section-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8);
+}
+
 /* ---------- Headings ---------- */
 h1, h2, h3, h4, h5 {
   color: #f3f4f6;
@@ -106,4 +142,12 @@ footer a:hover {
 /* ---------- Responsive ---------- */
 @media (max-width: 768px) {
   .fade-in { animation: fadeInUp 1s ease forwards; }
+
+  .section-overlap {
+    padding: 6rem 1.5rem;
+  }
+
+  .section-content {
+    padding: 2rem;
+  }
 }
