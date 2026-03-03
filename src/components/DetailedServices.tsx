@@ -6,7 +6,7 @@ export default function DetailedServices() {
     {
       icon: Globe,
       title: 'Web Development',
-      color: 'blue',
+      color: 'deepBlue',
       mainServices: [
         'Business websites for corporate presence',
         'Portfolio websites for professionals',
@@ -29,7 +29,7 @@ export default function DetailedServices() {
     {
       icon: Palette,
       title: 'Branding & Design',
-      color: 'green',
+      color: 'vibrantTeal',
       mainServices: [
         'Logo design that captures your essence',
         'Complete brand identity development',
@@ -51,7 +51,7 @@ export default function DetailedServices() {
     {
       icon: ShoppingCart,
       title: 'E-commerce Services',
-      color: 'purple',
+      color: 'warmAmber',
       mainServices: [
         'Full store setup on Shopify, WooCommerce, Amazon, or eBay',
         'Product catalog creation with images, descriptions, and pricing',
@@ -70,7 +70,7 @@ export default function DetailedServices() {
     {
       icon: BookOpen,
       title: 'eBook Selling Services',
-      color: 'teal',
+      color: 'coral',
       mainServices: [
         'Upload and categorize eBooks for online sale',
         'Set up payment gateways for purchases',
@@ -89,23 +89,47 @@ export default function DetailedServices() {
 
   const getColorClasses = (color: string) => {
     const colors = {
-      blue: { bg: 'bg-blue-900/20', text: 'text-blue-400', border: 'border-blue-700' },
-      green: { bg: 'bg-green-900/20', text: 'text-green-400', border: 'border-green-700' },
-      purple: { bg: 'bg-purple-900/20', text: 'text-purple-400', border: 'border-purple-700' },
-      teal: { bg: 'bg-teal-900/20', text: 'text-teal-400', border: 'border-teal-700' }
+      deepBlue: { 
+        bg: 'bg-deep-blue/10', 
+        text: 'text-deep-blue', 
+        border: 'border-deep-blue',
+        lightBg: 'bg-deep-blue/5',
+        hover: 'hover:bg-deep-blue/20'
+      },
+      vibrantTeal: { 
+        bg: 'bg-vibrant-teal/10', 
+        text: 'text-vibrant-teal', 
+        border: 'border-vibrant-teal',
+        lightBg: 'bg-vibrant-teal/5',
+        hover: 'hover:bg-vibrant-teal/20'
+      },
+      warmAmber: { 
+        bg: 'bg-warm-amber/10', 
+        text: 'text-warm-amber', 
+        border: 'border-warm-amber',
+        lightBg: 'bg-warm-amber/5',
+        hover: 'hover:bg-warm-amber/20'
+      },
+      coral: { 
+        bg: 'bg-coral/10', 
+        text: 'text-coral', 
+        border: 'border-coral',
+        lightBg: 'bg-coral/5',
+        hover: 'hover:bg-coral/20'
+      }
     };
-    return colors[color as keyof typeof colors];
+    return colors[color as keyof typeof colors] || colors.deepBlue;
   };
 
   return (
-    <section className="py-20 bg-black text-gray-100">
+    <section className="py-20 bg-white text-dark-gray">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Title */}
-        <div className="text-center mb-16 fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold text-amber-400 mb-4 glow-amber">
+        <div className="text-center mb-16 fade-in-up">
+          <h2 className="text-4xl md:text-5xl font-bold text-deep-blue mb-4">
             Complete Service Details
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-medium-gray max-w-3xl mx-auto">
             Everything you need to launch and grow your digital presence
           </p>
         </div>
@@ -118,27 +142,33 @@ export default function DetailedServices() {
             return (
               <div
                 key={idx}
-                className="bg-gray-900 rounded-2xl shadow-lg overflow-hidden hover:scale-105 hover:shadow-glow transition-transform duration-300 fade-in"
+                className="bg-soft-gray rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-500 fade-in-up"
+                style={{ animationDelay: `${idx * 0.2}s` }}
               >
                 {/* Header */}
                 <div className={`${colors.bg} border-b-2 ${colors.border} p-8`}>
                   <div className="flex items-center gap-4">
-                    <div className={`w-14 h-14 rounded-xl bg-black ${colors.text} flex items-center justify-center`}>
+                    <div className={`w-14 h-14 rounded-xl bg-white ${colors.text} flex items-center justify-center shadow-md`}>
                       <service.icon size={28} />
                     </div>
-                    <h3 className="text-3xl font-bold text-gray-100">{service.title}</h3>
+                    <h3 className={`text-3xl font-bold ${colors.text}`}>{service.title}</h3>
                   </div>
                 </div>
 
                 {/* Main Services */}
                 <div className="p-8 space-y-8">
                   <div>
-                    <h4 className="text-xl font-semibold text-gray-100 mb-4">Main Services</h4>
+                    <h4 className="text-xl font-semibold text-deep-blue mb-4 flex items-center gap-2">
+                      <span className="w-1 h-6 bg-vibrant-teal rounded-full"></span>
+                      Main Services
+                    </h4>
                     <ul className="grid md:grid-cols-2 gap-4">
                       {service.mainServices.map((item, i) => (
-                        <li key={i} className="flex items-start gap-3">
-                          <Check size={20} className={`${colors.text} mt-1 flex-shrink-0`} />
-                          <span className="text-gray-300">{item}</span>
+                        <li key={i} className="flex items-start gap-3 group">
+                          <div className={`${colors.bg} p-1 rounded-full transition-all duration-300 group-hover:scale-110`}>
+                            <Check size={18} className={colors.text} />
+                          </div>
+                          <span className="text-dark-gray group-hover:text-deep-blue transition-colors">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -146,30 +176,95 @@ export default function DetailedServices() {
 
                   {/* Add-ons */}
                   <div>
-                    <h4 className="text-xl font-semibold text-gray-100 mb-4">Add-on Services</h4>
-                    <ul className="grid md:grid-cols-3 gap-3">
+                    <h4 className="text-xl font-semibold text-deep-blue mb-4 flex items-center gap-2">
+                      <span className="w-1 h-6 bg-warm-amber rounded-full"></span>
+                      Add-on Services
+                    </h4>
+                    <div className="grid md:grid-cols-3 gap-3">
                       {service.addOns.map((item, i) => (
-                        <li
+                        <div
                           key={i}
-                          className={`${colors.bg} rounded-lg p-3 text-sm text-gray-300 hover:scale-105 hover:shadow-glow transition-all duration-300`}
+                          className={`${colors.lightBg} rounded-lg p-3 text-sm text-medium-gray border ${colors.border} border-opacity-20 hover:${colors.bg} hover:scale-105 hover:shadow-md transition-all duration-300 cursor-default`}
                         >
                           {item}
-                        </li>
+                        </div>
                       ))}
-                    </ul>
+                    </div>
                   </div>
 
                   {/* UI/UX Focus */}
-                  <div className={`${colors.bg} rounded-xl p-6 border-l-4 ${colors.border}`}>
-                    <h4 className={`${colors.text} font-semibold mb-2`}>UI/UX Focus</h4>
-                    <p className="text-gray-300">{service.uiux}</p>
+                  <div className={`${colors.lightBg} rounded-xl p-6 border-l-4 ${colors.border} bg-white`}>
+                    <h4 className={`${colors.text} font-semibold mb-2 flex items-center gap-2`}>
+                      <span className="w-2 h-2 rounded-full bg-current"></span>
+                      UI/UX Focus
+                    </h4>
+                    <p className="text-medium-gray leading-relaxed">{service.uiux}</p>
+                  </div>
+
+                  {/* Stats/Benefits */}
+                  <div className="grid grid-cols-3 gap-4 pt-4">
+                    {[
+                      { label: 'Projects', value: '150+' },
+                      { label: 'Satisfaction', value: '98%' },
+                      { label: 'Support', value: '24/7' }
+                    ].map((stat, i) => (
+                      <div key={i} className="text-center">
+                        <div className={`text-2xl font-bold ${colors.text}`}>{stat.value}</div>
+                        <div className="text-xs text-medium-gray uppercase tracking-wider">{stat.label}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Footer */}
+                <div className={`px-8 py-4 ${colors.bg} border-t ${colors.border} border-opacity-20`}>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-medium-gray">Starting from</span>
+                    <span className={`text-2xl font-bold ${colors.text}`}>$499</span>
                   </div>
                 </div>
               </div>
             );
           })}
         </div>
+
+        {/* CTA Section */}
+        <div className="mt-20 text-center bg-deep-blue rounded-3xl p-12 text-white">
+          <h3 className="text-3xl font-bold mb-4">Need a Custom Package?</h3>
+          <p className="text-white/80 mb-8 max-w-2xl mx-auto">
+            We can tailor our services to perfectly match your specific requirements and budget.
+          </p>
+          <button className="bg-white text-deep-blue px-8 py-4 rounded-xl font-semibold hover:bg-vibrant-teal hover:text-white transition-all duration-300 hover:scale-105 hover:shadow-lg">
+            Get a Custom Quote
+          </button>
+        </div>
       </div>
+
+      {/* Custom Animations */}
+      <style>{`
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .fade-in-up {
+          animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .hover-lift {
+          transition: transform 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+          transform: translateY(-5px);
+        }
+      `}</style>
     </section>
   );
 }
