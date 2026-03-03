@@ -62,14 +62,14 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-black text-gray-200">
+    <section id="contact" className="py-20 bg-white text-dark-gray">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-amber-400 mb-4 glow-amber">
+          <h2 className="text-4xl md:text-5xl font-bold text-deep-blue mb-4">
             Ready to Start Your Project?
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-medium-gray max-w-3xl mx-auto">
             Let's discuss how we can help transform your digital presence
           </p>
         </div>
@@ -77,83 +77,129 @@ export default function Contact() {
         <div className="grid md:grid-cols-2 gap-12">
           {/* Contact Info */}
           <div>
-            <h3 className="text-2xl font-bold text-gray-100 mb-6 glow-amber">Get in Touch</h3>
-            <p className="text-gray-400 mb-8">
+            <h3 className="text-2xl font-bold text-deep-blue mb-6">Get in Touch</h3>
+            <p className="text-medium-gray mb-8">
               Have a project in mind? We'd love to hear about it. Fill out the form and our team will get back to you within 24 hours.
             </p>
 
             <div className="space-y-6">
               {[
-                { icon: Mail, title: 'Email Us', value: 'hello@nexusdev.com', bg: 'bg-blue-900', text: 'text-amber-400 glow-amber' },
-                { icon: Phone, title: 'Call Us', value: '+92 XXX XXXXXXX', bg: 'bg-green-900', text: 'text-amber-400 glow-amber' },
-                { icon: MessageSquare, title: 'WhatsApp', value: 'Available for quick queries', bg: 'bg-orange-900', text: 'text-amber-400 glow-amber' }
+                { 
+                  icon: Mail, 
+                  title: 'Email Us', 
+                  value: 'hello@nexusdev.com', 
+                  bg: 'bg-deep-blue', 
+                  text: 'text-white',
+                  hover: 'hover:bg-vibrant-teal'
+                },
+                { 
+                  icon: Phone, 
+                  title: 'Call Us', 
+                  value: '+92 XXX XXXXXXX', 
+                  bg: 'bg-vibrant-teal', 
+                  text: 'text-white',
+                  hover: 'hover:bg-deep-blue'
+                },
+                { 
+                  icon: MessageSquare, 
+                  title: 'WhatsApp', 
+                  value: 'Available for quick queries', 
+                  bg: 'bg-warm-amber', 
+                  text: 'text-white',
+                  hover: 'hover:bg-deep-blue'
+                }
               ].map((contact, idx) => (
-                <div key={idx} className="flex items-start gap-4">
-                  <div className={`${contact.bg} ${contact.text} p-3 rounded-lg`}>
+                <div key={idx} className="flex items-start gap-4 group cursor-pointer">
+                  <div className={`${contact.bg} ${contact.text} p-3 rounded-lg transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg`}>
                     <contact.icon size={24} />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-100 mb-1 glow-amber">{contact.title}</h4>
-                    <p className="text-gray-400">{contact.value}</p>
+                    <h4 className={`font-semibold text-deep-blue mb-1 transition-colors group-hover:text-vibrant-teal`}>
+                      {contact.title}
+                    </h4>
+                    <p className="text-medium-gray">{contact.value}</p>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div className="mt-10 bg-gray-900 rounded-2xl p-8 text-gray-200">
-              <h4 className="text-xl font-bold mb-3 text-amber-400 glow-amber">Why Choose Us?</h4>
-              <ul className="space-y-2">
-                {['Fast turnaround time', 'Competitive pricing', '24/7 support available', '100% satisfaction guarantee'].map((item, idx) => (
-                  <li key={idx} className="flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-1 glow-amber"></div>
-                    {item}
+            <div className="mt-10 bg-soft-gray rounded-2xl p-8 text-dark-gray border border-deep-blue/10">
+              <h4 className="text-xl font-bold mb-3 text-deep-blue">Why Choose Us?</h4>
+              <ul className="space-y-3">
+                {[
+                  'Fast turnaround time', 
+                  'Competitive pricing', 
+                  '24/7 support available', 
+                  '100% satisfaction guarantee'
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-center gap-3 group">
+                    <div className="w-2 h-2 rounded-full bg-vibrant-teal group-hover:bg-warm-amber transition-colors"></div>
+                    <span className="text-medium-gray group-hover:text-deep-blue transition-colors">{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
+
+            {/* Trust Badges */}
+            <div className="mt-8 flex flex-wrap gap-4">
+              <span className="bg-soft-gray text-deep-blue px-4 py-2 rounded-full text-sm font-semibold border border-deep-blue/10">
+                ⚡ 24h Response
+              </span>
+              <span className="bg-soft-gray text-deep-blue px-4 py-2 rounded-full text-sm font-semibold border border-deep-blue/10">
+                🛡️ Secure & Confidential
+              </span>
+              <span className="bg-soft-gray text-deep-blue px-4 py-2 rounded-full text-sm font-semibold border border-deep-blue/10">
+                💯 Satisfaction Guaranteed
+              </span>
+            </div>
           </div>
 
           {/* Contact Form */}
-          <div className="bg-gray-900 rounded-2xl shadow-xl p-8">
+          <div className="bg-soft-gray rounded-2xl shadow-xl p-8 border border-deep-blue/10">
             <form onSubmit={handleSubmit} className="space-y-6">
               {error && (
-                <div className="bg-red-900 border-l-4 border-red-600 p-4 rounded glow-amber">
-                  <p className="text-red-400 font-semibold">Error</p>
-                  <p className="text-red-300 text-sm">{error}</p>
+                <div className="bg-coral/10 border-l-4 border-coral p-4 rounded">
+                  <p className="text-coral font-semibold">Error</p>
+                  <p className="text-medium-gray text-sm">{error}</p>
                 </div>
               )}
 
               {success && (
-                <div className="bg-green-900 border-l-4 border-green-500 p-4 rounded glow-amber">
-                  <p className="text-green-400 font-semibold">Success!</p>
-                  <p className="text-green-300 text-sm">Thank you for your inquiry. We'll contact you within 24 hours.</p>
+                <div className="bg-lime-green/10 border-l-4 border-lime-green p-4 rounded">
+                  <p className="text-lime-green font-semibold">Success!</p>
+                  <p className="text-medium-gray text-sm">Thank you for your inquiry. We'll contact you within 24 hours.</p>
                 </div>
               )}
 
               {/* Form Inputs */}
               <div className="grid gap-4 md:grid-cols-2">
-                {['name', 'email', 'company', 'phone'].map((field) => (
-                  <div key={field}>
-                    <label htmlFor={field} className="block text-sm font-semibold text-gray-200 mb-2 glow-amber">
-                      {field.charAt(0).toUpperCase() + field.slice(1)}{field !== 'company' && ' *'}
+                {[
+                  { name: 'name', label: 'Name', type: 'text', required: true },
+                  { name: 'email', label: 'Email', type: 'email', required: true },
+                  { name: 'company', label: 'Company', type: 'text', required: false },
+                  { name: 'phone', label: 'Phone', type: 'tel', required: false, placeholder: '+92 XXX XXXXXXX' }
+                ].map((field) => (
+                  <div key={field.name}>
+                    <label htmlFor={field.name} className="block text-sm font-semibold text-deep-blue mb-2">
+                      {field.label}{field.required && ' *'}
                     </label>
                     <input
-                      type={field === 'email' ? 'email' : 'text'}
-                      id={field}
-                      name={field}
-                      required={field !== 'company'}
-                      value={formData[field as keyof typeof formData]}
+                      type={field.type}
+                      id={field.name}
+                      name={field.name}
+                      required={field.required}
+                      value={formData[field.name as keyof typeof formData]}
                       onChange={handleChange}
                       disabled={loading}
-                      className="w-full px-4 py-3 border-2 border-gray-700 rounded-lg bg-black text-gray-200 focus:border-amber-400 glow-amber focus:outline-none disabled:bg-gray-800"
-                      placeholder={field === 'phone' ? '+92 XXX XXXXXXX' : `Your ${field}`}
+                      placeholder={field.placeholder || `Your ${field.label.toLowerCase()}`}
+                      className="w-full px-4 py-3 border-2 border-deep-blue/20 rounded-lg bg-white text-dark-gray focus:border-vibrant-teal focus:outline-none disabled:bg-soft-gray transition-colors"
                     />
                   </div>
                 ))}
               </div>
 
               <div>
-                <label htmlFor="service" className="block text-sm font-semibold text-gray-200 mb-2 glow-amber">
+                <label htmlFor="service" className="block text-sm font-semibold text-deep-blue mb-2">
                   Service Interested In *
                 </label>
                 <select
@@ -163,7 +209,7 @@ export default function Contact() {
                   value={formData.service}
                   onChange={handleChange}
                   disabled={loading}
-                  className="w-full px-4 py-3 border-2 border-gray-700 rounded-lg bg-black text-gray-200 focus:border-amber-400 glow-amber focus:outline-none disabled:bg-gray-800"
+                  className="w-full px-4 py-3 border-2 border-deep-blue/20 rounded-lg bg-white text-dark-gray focus:border-vibrant-teal focus:outline-none disabled:bg-soft-gray transition-colors"
                 >
                   <option value="">Select a service</option>
                   <option value="web">Web Development</option>
@@ -175,7 +221,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-semibold text-gray-200 mb-2 glow-amber">
+                <label htmlFor="message" className="block text-sm font-semibold text-deep-blue mb-2">
                   Project Details *
                 </label>
                 <textarea
@@ -186,7 +232,7 @@ export default function Contact() {
                   onChange={handleChange}
                   disabled={loading}
                   rows={5}
-                  className="w-full px-4 py-3 border-2 border-gray-700 rounded-lg bg-black text-gray-200 focus:border-amber-400 glow-amber focus:outline-none resize-none disabled:bg-gray-800"
+                  className="w-full px-4 py-3 border-2 border-deep-blue/20 rounded-lg bg-white text-dark-gray focus:border-vibrant-teal focus:outline-none resize-none disabled:bg-soft-gray transition-colors"
                   placeholder="Tell us about your project..."
                 />
               </div>
@@ -194,23 +240,38 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-amber-400 text-black py-4 rounded-lg hover:bg-amber-500 glow-amber-btn transition-colors font-semibold flex items-center justify-center gap-2 disabled:bg-gray-700 disabled:cursor-not-allowed"
+                className="w-full bg-deep-blue text-white py-4 rounded-lg hover:bg-vibrant-teal transition-all duration-300 font-semibold flex items-center justify-center gap-2 disabled:bg-medium-gray disabled:cursor-not-allowed group hover:shadow-lg"
               >
                 {loading ? 'Sending...' : 'Send Message'}
-                {!loading && <Send size={20} />}
+                {!loading && <Send size={20} className="group-hover:translate-x-1 transition-transform" />}
               </button>
+
+              {/* Form Footer */}
+              <p className="text-xs text-medium-gray text-center mt-4">
+                By submitting this form, you agree to our privacy policy and consent to being contacted.
+              </p>
             </form>
           </div>
         </div>
       </div>
 
-      {/* Glowing Styles */}
+      {/* Custom Styles */}
       <style>{`
-        .glow-amber {
-          text-shadow: 0 0 8px rgba(255,191,0,0.7), 0 0 16px rgba(255,191,0,0.4);
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-10px); }
         }
-        .glow-amber-btn:hover {
-          box-shadow: 0 0 12px rgba(255,191,0,0.6), 0 0 24px rgba(255,191,0,0.3);
+        
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+        
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus {
+          -webkit-box-shadow: 0 0 0px 1000px white inset;
+          -webkit-text-fill-color: #111827;
+          border: 2px solid #14B8A6;
         }
       `}</style>
     </section>
